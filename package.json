@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "name": "12-dwitter",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
