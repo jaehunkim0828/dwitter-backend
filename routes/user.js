@@ -15,7 +15,7 @@ userRouter.route('/')
         if (type === 'register') {
             //회원가입 할때
             users.push({ email, password, name });
-            return req.send('register secceed');
+            return req.status(201).send('Created account!');
         }
         if (type === 'login') {
             //로그인 할때
