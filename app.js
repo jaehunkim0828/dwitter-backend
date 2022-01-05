@@ -15,19 +15,20 @@
 //7. '/twit/:user' delete
 import express from 'express';
 import cors from 'cors';
-// import morgan from 'morgan';
-// import helmet from 'helmet';
+import morgan from 'morgan';
+import helmet from 'helmet';
 import 'express-async-errors';
 
 import rootRouter from './routes/index.js';
+import { Server } from 'socket.io';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
-// app.use(helmet());
+app.use(helmet());
 app.use(cors());
-// app.use(morgan('tiny'));
+app.use(morgan('tiny'));
 
 
 app.use('/', rootRouter);
@@ -42,4 +43,14 @@ app.use((error, req, res, next) => {
 })
 
 
-app.listen(port, () => console.log(`server is running http://localhost:${port}`));
+const server = app.listen(port, () => console.log(`server is running http://localhost:${port}`));
+const socketIO = new Server(server, {
+  cors: {
+    origin: '*'
+  }
+});
+
+socketIO.on('connection', socket => {
+  console.log('Client is here!');
+  socketIO.emit('dwitter', 'hello');
+})
