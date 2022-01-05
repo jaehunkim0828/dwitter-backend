@@ -1,6 +1,7 @@
 const tweets = [
     { 
-        name: 'Jaehun', 
+        id: 1,
+        username: '재훈', 
         time: new Date(), 
         text: 'hello my name is jaehun i want to refund',
     }
@@ -41,4 +42,8 @@ export async function remove(name, time, text) {
 
 export async function getUser(user) {
     return tweets.filter(twit => twit.name === user);
+}
+
+export async function getById(name) {
+    return tweets.find(tweet => tweet.name === name);
 }

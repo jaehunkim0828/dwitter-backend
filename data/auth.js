@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const users = [{ id: 1, email: 'kkaa81@naver.com', password: '123456', name: 'jaehun', username: '재훈' }];
+const users = [{ id: 1, email: 'kkaa81@naver.com', password: '$2b$10$9DvoAJFxAySWiO1M0ujaDeYCve7yCg.HKRbLkj4OBsmnWNdACeFS.', name: 'jaehun', username: '재훈' }];
 const secretKey = 'random';
 
 export async function getUsers() {
@@ -37,8 +37,9 @@ export async function createUser(email, password, name, username) {
             return { message: '닉네임이 존재합니다.' }
         }
     })
-    const id = new Date().toString();
-    const hashed = bcrypt.hashSync(password, 10); 
+    const id = Date.now().toString();
+    const hashed = bcrypt.hashSync(password, 10);
+    console.log(hashed);
     users.push({ id, email, password: hashed, name, username });
     return;
 }
