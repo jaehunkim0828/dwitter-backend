@@ -17,7 +17,7 @@ authRouter.route('/me')
         if (!user) {
             return res.status(404).json({ message: 'User not found '});
         }
-        return res.send(user);
+        return res.send(user.username);
     })
 
 

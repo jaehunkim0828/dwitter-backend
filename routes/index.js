@@ -1,11 +1,11 @@
 import express from 'express';
 
 import twitRouter from './twit.js';
-import userRouter from './user.js';
+import authRouter from './auth/index.js';
 
 const rootRouter = express.Router();
 
-rootRouter.use('/user', userRouter);
+rootRouter.use('/auth', authRouter);
 rootRouter.use('/twit', twitRouter);
 
 
