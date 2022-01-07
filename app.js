@@ -20,10 +20,10 @@ import helmet from 'helmet';
 import 'express-async-errors';
 
 import rootRouter from './routes/index.js';
-import { Server } from 'socket.io';
+import { initSocket } from './connection/socket.js';
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(express.json());
 app.use(helmet());
@@ -44,13 +44,4 @@ app.use((error, req, res, next) => {
 
 
 const server = app.listen(port, () => console.log(`server is running http://localhost:${port}`));
-const socketIO = new Server(server, {
-  cors: {
-    origin: '*'
-  }
-});
-
-socketIO.on('connection', socket => {
-  console.log('Client is here!');
-  socketIO.emit('dwitter', 'hello');
-})
+initSocket(server);
