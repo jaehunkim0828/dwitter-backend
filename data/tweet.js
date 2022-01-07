@@ -11,10 +11,10 @@ export async function getAll() {
     return tweets;
 }
 
-export async function create(name, time, text) {
-    if (!name || !time || !text) return res.status(404).send('fail twit');
-    tweets.push({ name, time, text }); 
-    return;
+export async function create(username, time, text) {
+    if (!username || !time || !text) return res.status(404).send('fail twit');
+    tweets.push({ username, time, text }); 
+    return {username, time, text}
 }
 
 export async function update(name, time, text) {
